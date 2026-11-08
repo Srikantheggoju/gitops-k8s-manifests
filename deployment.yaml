@@ -2,18 +2,28 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gitops-demo
+  labels:
+    app: gitops-demo
+
 spec:
   replicas: 2
+
   selector:
     matchLabels:
       app: gitops-demo
+
   template:
     metadata:
       labels:
         app: gitops-demo
+
     spec:
       containers:
       - name: gitops-demo
+
         image: srikantheggoju/gitops-demo:1
+
+        imagePullPolicy: Always
+
         ports:
         - containerPort: 5000
